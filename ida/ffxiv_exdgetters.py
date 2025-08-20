@@ -45,8 +45,8 @@ if api is None:
         import ida_name
         import idc
         from ida_wrapper import IdaInterface
-    except ImportError:
-        print("Warning: Unable to load IDA")
+    except ImportError as ee:
+        print("Warning: Unable to load IDA " + ee.msg)
     else:
         # noinspection PyUnresolvedReferences
         class IdaApi(BaseApi, IdaInterface):
