@@ -22,36 +22,41 @@ class BaseIdaInterface(object):
             type (str): Name of the type.
         """
         if (
-            type == "unsigned __int8"
-            or type == "__int8"
+            type == "unsigned byte"
+            or type == "unsigned char"
+            or type == "unsigned __int8"
+            or type == "ubyte"
+            or type == "byte"
             or type == "bool"
             or type == "char"
-            or type == "unsigned char"
             or type == "uchar"
-            or type == "byte"
+            or type == "__int8"
         ):
             return ida_bytes.byte_flag()
         elif (
-            type == "unsigned __int16"
-            or type == "__int16"
-            or type == "short"
+            type == "unsigned short"
             or type == "ushort"
+            or type == "unsigned __int16"
+            or type == "short"
+            or type == "__int16"
+            or type == "_WORD"
         ):
             return ida_bytes.word_flag()
         elif (
-            type == "unsigned __int32"
-            or type == "__int32"
-            or type == "int"
-            or type == "unsigned int"
+            type == "unsigned int"
+            or type == "unsigned __int32"
             or type == "uint"
+            or type == "int"
+            or type == "__int32"
             or type == "_DWORD"
         ):
             return ida_bytes.dword_flag()
         elif (
-            type == "unsigned __int64"
-            or type == "__int64"
+            type == "unsigned long"
+            or type == "unsigned __int64"
             or type == "ulong"
             or type == "long"
+            or type == "__int64"
             or type == "__fastcall"
             or type.endswith("*")
         ):
