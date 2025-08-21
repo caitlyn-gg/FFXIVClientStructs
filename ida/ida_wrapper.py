@@ -934,7 +934,10 @@ elif idaapi.IDA_SDK_VERSION >= 900:
                 int: The number of members removed or -1 if failed
             """
             try:
-                tinfo = ida_typeinf.tinfo_t(tid=sid)
+                tinfo = ida_typeinf.tinfo_t()
+                if not tinfo.get_type_by_tid(sid):
+                    return -1
+                
                 size = tinfo.get_udt_nmembers()
                 tinfo.del_udms(0, size)
                 return size
