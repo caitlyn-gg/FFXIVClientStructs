@@ -1,33 +1,35 @@
+from typing import Optional
+from dataclasses import dataclass, field
+
+
+@dataclass
 class DefinedDataClassInstance:
-    def __init__(self, ea, pointer=False, name=None):
-        # type: (int, bool, str | None) -> None
-        self.ea = ea
-        self.pointer = pointer
-        self.name = name
+    ea: int
+    pointer: bool = False
+    name: Optional[str] = None
 
+
+@dataclass
 class DefinedDataClassVtable:
-    def __init__(self, ea, base=None):
-        # type: (int, None | str) -> None
-        self.ea = ea
-        self.base = base
+    ea: int
+    base: Optional[str] = None
 
+
+@dataclass
 class DefinedDataClassFunction:
-    def __init__(self, num, name):
-        # type: (int, str) -> None
-        self.num = num
-        self.name = name
+    num: int
+    name: str
 
+
+@dataclass
 class DefinedDataClass:
-    def __init__(self, name, instances=[], vtbls=[], functions=[], vfuncs=[]):
-        # type: (str, list[DefinedDataClassInstance], list[DefinedDataClassVtable], list[DefinedDataClassFunction], list[DefinedDataClassFunction]) -> None
-        self.instances = instances
-        self.vtbls = vtbls
-        self.functions = functions
-        self.vfuncs = vfuncs
-        self.name = name
+    name: str
+    instances: list[DefinedDataClassInstance] = field(default_factory=list)
+    vtbls: list[DefinedDataClassVtable] = field(default_factory=list)
+    functions: list[DefinedDataClassFunction] = field(default_factory=list)
+    vfuncs: list[DefinedDataClassFunction] = field(default_factory=list)
 
+
+@dataclass
 class DefinedData:
-    def __init__(self, classes=[]):
-        # type: (list[DefinedDataClass]) -> None
-        self.classes = classes
-        pass
+    classes: list[DefinedDataClass] = field(default_factory=list)
